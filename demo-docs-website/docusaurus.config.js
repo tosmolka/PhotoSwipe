@@ -38,6 +38,23 @@ const config = {
         trackingID: 'G-57MLE6HBT9',
       },
     ],
+    () => ({
+      name: '@docusaurus/plugin-trusted-types',
+      configureWebpack() {
+        return {
+          devServer: {
+            headers: {
+              'Content-Security-Policy-Report-Only':
+                'trusted-types @docusaurus/demo-docs-website; '
+                + 'require-trusted-types-for \'script\';',
+            },
+          },
+          output: {
+            trustedTypes: '@docusaurus/demo-docs-website'
+          },
+        };
+      },
+    }),
   ],
   presets: [
     [
